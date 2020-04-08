@@ -13,7 +13,7 @@ public class LIBUltra {
         System.out.println(messg);
     }
 
-    public static boolean equal(double a, double b) {
+    public static boolean isEqual(double a, double b) {
         if (Math.abs((a - b)) < EQUALITY_EPSILON) {
             return true;
         } else {

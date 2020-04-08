@@ -1,5 +1,7 @@
 package ballew.rayTracer.domain;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Tuple {
@@ -22,6 +24,15 @@ public class Tuple {
 
     public boolean isVector() {
         return (w == 0);
+    }
+
+    // Static Methods
+    public static List<Double> toList(Tuple t) {
+        return Arrays.asList(t.getX(), t.getY(), t.getZ(), t.getW());
+    }
+
+    public static Tuple fromList(List<Double> lst) {
+        return new Tuple(lst.get(0), lst.get(1), lst.get(2), lst.get(3));
     }
 
     public static Tuple add(Tuple a1, Tuple a2) {
@@ -65,8 +76,8 @@ public class Tuple {
         return new Tuple(t.getX() * factor, t.getY() * factor, t.getZ() * factor, t.getW() * factor);
     }
 
-    public static Tuple hadamardProduct(Tuple a1, Tuple a2){
-        return new Tuple((a1.getX() * a2.getX()),(a1.getY() * a2.getY()),(a1.getZ() * a2.getZ()),(a1.getW() * a2.getW()));
+    public static Tuple hadamardProduct(Tuple a1, Tuple a2) {
+        return new Tuple((a1.getX() * a2.getX()), (a1.getY() * a2.getY()), (a1.getZ() * a2.getZ()), (a1.getW() * a2.getW()));
     }
 
     public static Tuple divide(Tuple t, double divisor) {

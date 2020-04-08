@@ -6,8 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-import java.sql.SQLOutput;
-
 public class LIBUltraSteps {
 
     @Given("I have two same floating point numbers")
@@ -19,7 +17,7 @@ public class LIBUltraSteps {
 
     @When("I compare them")
     public void i_compare_them() {
-        boolean result = LIBUltra.equal(23.5, 23.5);
+        boolean result = LIBUltra.isEqual(23.5, 23.5);
         if (!result){
             Assert.fail();
         }
@@ -27,7 +25,7 @@ public class LIBUltraSteps {
 
     @Then("they are equal return true")
     public void they_are_equal_return_true() {
-        System.out.println("They are the same: " + LIBUltra.equal(23.5, 23.5));
+        System.out.println("They are the same: " + LIBUltra.isEqual(23.5, 23.5));
     }
 
     @Given("I have two different floating point numbers")
@@ -39,12 +37,12 @@ public class LIBUltraSteps {
 
     @When("I compare them again")
     public void i_compare_them_again() {
-        boolean result = LIBUltra.equal(22, 22.00001);
+        boolean result = LIBUltra.isEqual(22, 22.00001);
     }
 
     @Then("they are not equal return false")
     public void they_are_not_equal_return_false() {
-        System.out.println("They are the same: " + LIBUltra.equal(24, 24.00001));
+        System.out.println("They are the same: " + LIBUltra.isEqual(24, 24.00001));
     }
 
 
