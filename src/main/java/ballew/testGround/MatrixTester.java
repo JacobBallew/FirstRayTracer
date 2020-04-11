@@ -1,7 +1,6 @@
 package ballew.testGround;
 
 import ballew.rayTracer.domain.Matrix;
-import ballew.rayTracer.domain.Tuple;
 import org.springframework.util.StopWatch;
 
 public class MatrixTester {
@@ -80,17 +79,30 @@ public class MatrixTester {
         System.out.println(m3.equals(Matrix.createIdentityMatrix()));
 
          */
+
+
         Matrix a = new Matrix(new double[][]{
-                {1, 5, 0},
-                {-3, 2, 7},
-                {0, 6, -3}}, 3, 3);
+                {3, -9, 7, 3},
+                {3, -8, 2, -9},
+                {-4, 4, 4, 1},
+                {-6, 5, -1, 1}}, 4, 4);
 
-        Matrix a2 = new Matrix(new double[][]{
-                {1, 5, 0, 5},
-                {-3, 2, 7, 2},
-                {0, 6, -3, 8},
-                {1, 2, 3, 4}}, 4, 4);
+        Matrix b = new Matrix(new double[][]{
+                {8, 2, 2, 2},
+                {3, -1, 7, 0},
+                {7, 0, 5, 4},
+                {6, -2, 0, 5}}, 4, 4);
 
-        Matrix.subMatrix(a2, 1, 3).print();
+        Matrix c = Matrix.multiplyByMatrix(a, b);
+        a.print();
+        b.print();
+        c.print();
+
+        System.out.println("-------------------------------------------------");
+        Matrix inverse = Matrix.multiplyByMatrix(c, Matrix.inverse(b));
+        inverse.print();
+        System.out.println( a.equals(inverse));
+
+
     }
 }
