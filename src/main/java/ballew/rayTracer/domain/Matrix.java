@@ -148,7 +148,7 @@ public class Matrix {
     }
 
     /**
-     * Multiply a matirx by the Identity Matrix (Like multiplying a number by "1")
+     * Multiply a matrix by the Identity Matrix (Like multiplying a number by "1")
      *
      * @param m1
      * @return
@@ -177,6 +177,9 @@ public class Matrix {
             res.add(interimSum);
             interimSum = 0;
         }
+//        res.forEach(i -> {
+//            System.out.println(i);
+//        });
         return Tuple.fromList(res);
     }
 
@@ -341,6 +344,84 @@ public class Matrix {
             LIBUltra.log("Matrix is not Invertible");
         }
         return m2;
+    }
+    /*---------------------------------
+    Transformation (Motion) methods*/
+
+    public static Matrix translation(double x, double y, double z) {
+        Matrix res = Matrix.createIdentityMatrix();
+        res.insertAt(x, 0, 3);
+        res.insertAt(y, 1, 3);
+        res.insertAt(z, 2, 3);
+        return res;
+    }
+
+    public static Matrix scaling(double x, double y, double z) {
+        Matrix res = Matrix.createIdentityMatrix();
+        res.insertAt(x, 0, 0);
+        res.insertAt(y, 1, 1);
+        res.insertAt(z, 2, 2);
+        return res;
+    }
+
+    public static Matrix rotationX(double radians) {
+        Matrix rotTrans = createIdentityMatrix();
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 1, 1);
+        rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 1, 2);
+        rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 2, 1);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 2, 2);
+        //rotTrans.print();
+        return rotTrans;
+    }
+
+    public static Matrix rotationY(double radians) {
+        Matrix rotTrans = createIdentityMatrix();
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 0, 0);
+        rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 0, 2);
+        rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 2, 0);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 2, 2);
+        //rotTrans.print();
+        return rotTrans;
+    }
+
+    public static Matrix rotationZ(double radians) {
+        Matrix rotTrans = createIdentityMatrix();
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 0, 0);
+        rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 0, 1);
+        rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 1, 0);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 1, 1);
+        //rotTrans.print();
+        return rotTrans;
+    }
+
+    public static Matrix rotationZ_deg(double deg) {
+        Matrix rotTrans = createIdentityMatrix();
+        double radians = Math.toRadians(deg);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 0, 0);
+        rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 0, 1);
+        rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 1, 0);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 1, 1);
+        //rotTrans.print();
+        return rotTrans;
+    }
+
+    public static Matrix shearing(double xy, double xz, double yx, double yz, double zx, double zy) {
+        Matrix shearTrans = createIdentityMatrix();
+        shearTrans.insertAt(xy, 0, 1);
+        shearTrans.insertAt(xz, 0, 2);
+        shearTrans.insertAt(yx, 1, 0);
+        shearTrans.insertAt(yz, 1, 2);
+        shearTrans.insertAt(zx, 2, 0);
+        shearTrans.insertAt(zy, 2, 1);
+        return shearTrans;
+    }
+
+    public static Matrix chainTransformations(List<Matrix> matrices) {
+        Matrix res = matrices.get(matrices.size() - 1);
+        for (int i = matrices.size() - 2; i >= 0; i--) {
+            res = Matrix.multiplyByMatrix(res, matrices.get(i));
+        }
+        return res;
     }
 
 

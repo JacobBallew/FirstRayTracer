@@ -8,15 +8,14 @@ import ballew.rayTracer.utils.LIBUltra;
 public class HelloWorld {
     public static void main(String[] args) {
 
-        //int[][] test = new int[3][2];
-        int[][] test = new int[3][4];
+        double a = Math.toRadians(90);
+        System.out.println(a);
+        double aa = Math.cos(Math.PI/2);
+        System.out.println(LIBUltra.round3places(aa));
 
-        for(int i = 0; i < 20; i++){
-            System.out.println(LIBUltra.randomDouble(-1,1));
-        }
+    }
 
-
-
-
+    public static double toRadians(double degrees) {
+        return (degrees / 180) * Math.PI;
     }
 }

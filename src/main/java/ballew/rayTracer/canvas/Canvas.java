@@ -4,6 +4,9 @@ import ballew.rayTracer.domain.Color;
 import ballew.rayTracer.ppm.CanvasPPM;
 import ballew.rayTracer.utils.LIBUltra;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static ballew.rayTracer.utils.LIBUltra.log;
 
 public class Canvas {
@@ -40,6 +43,28 @@ public class Canvas {
     public void writePixel(int yRow, int xCol, Color c) {
         if ((xCol >= 0 && xCol < getWidth() - 1) && (yRow >= 0 && yRow < getHeight() - 1))
             pixels[yRow][xCol] = c;
+    }
+
+    public void writePixelBold(int yRow, int xCol, Color c) {
+        int yRowTop = yRow - 1;
+        int yRowBottom = yRow + 1;
+        int xColRight = xCol + 1;
+        int xColLeft = xCol - 1;
+
+        // Center
+        writePixel(yRow, xCol, c);
+
+        // Top
+        writePixel(yRowTop, xCol, c);
+
+        // Bottom
+        writePixel(yRowBottom, xCol, c);
+
+        // Left
+        writePixel(yRow, xColLeft, c);
+
+        // Right
+        writePixel(yRow, xColRight, c);
     }
 
     public Color pixelAt(int row, int col) {
@@ -124,6 +149,14 @@ public class Canvas {
                 pixels[i][j] = c;
             }
         }
+    }
+
+    public int getYMid() {
+        return getHeight() / 2;
+    }
+
+    public int getXMid() {
+        return getWidth() / 2;
     }
 
     // Static Methods

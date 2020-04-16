@@ -26,6 +26,16 @@ public class LIBUltra {
         return Double.valueOf(df.format(input));
     }
 
+    public static double round3places(double input){
+        DecimalFormat df = new DecimalFormat("0.000");
+        return Double.valueOf(df.format(input));
+    }
+
+    public static double round4places(double input){
+        DecimalFormat df = new DecimalFormat("0.0000");
+        return Double.valueOf(df.format(input));
+    }
+
     public static void printFormated(List<String> messages){
         String format = "%-40s%s%n";
     }
@@ -42,6 +52,8 @@ public class LIBUltra {
     public static double randomDouble(double lower, double upper){
         return ThreadLocalRandom.current().nextDouble(lower, upper + 1);
     }
+
+
 
     public static final int ONE_SECOND = 1000;
     public static final int HALF_SECOND = 500;
