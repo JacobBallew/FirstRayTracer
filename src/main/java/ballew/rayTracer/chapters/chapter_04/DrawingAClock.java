@@ -16,15 +16,14 @@ public class DrawingAClock {
         String path = "C:\\Users\\jball\\Desktop\\test.ppm";
 
         // Dimensions
-        int width = 1200;
-        int height = 720;
+        int width = 400;
+        int height = 400;
 
         // Create Canvas
         Canvas canvas = new Canvas(width, height);
 
         // Point with Initial position. Origin
         Point p = new Point(canvas.getXMid(), canvas.getYMid(), 0);
-
 
 
         //Write Pixel
@@ -35,17 +34,28 @@ public class DrawingAClock {
                 new Color(0, 0, 1));
 
         // Calculate positions
-        Matrix rotation = Matrix.rotationZ_deg(-5);
-        Matrix translation = Matrix.translation(0,10,0);
-        Matrix finalTransform = Matrix.chainTransformations(Arrays.asList(rotation,translation));
 
-        Point p2 = Point.toPoint(Matrix.multiplyByTuple(rotation, p));
+        Matrix translation = Matrix.translation(0, 10, 0);
+
+        //Matrix finalTransform = Matrix.chainTransformations(Arrays.asList(rotation, translation));
+
+        Point p2 = Point.toPoint(Matrix.multiplyByTuple(translation, p));
 
         //Write Pixel
         System.out.println(p2);
         canvas.writePixelBold(
                 (height - (int) p2.getY()),
                 (int) p2.getX(),
+                new Color(1, 0, 0));
+
+        Matrix rotation = Matrix.rotationZ(-1 * (Math.PI / 2)   );
+        Point p3 = Point.toPoint(Matrix.multiplyByTuple(rotation, p2));
+
+
+        System.out.println(p3);
+        canvas.writePixelBold(
+                (height - (int) p3.getY()),
+                (width + (int) p3.getX()),
                 new Color(1, 0, 0));
 
 

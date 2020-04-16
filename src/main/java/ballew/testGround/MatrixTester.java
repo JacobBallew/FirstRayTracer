@@ -4,7 +4,6 @@ import ballew.rayTracer.domain.Matrix;
 import ballew.rayTracer.domain.Point;
 import ballew.rayTracer.domain.Vector;
 import ballew.rayTracer.utils.LIBUltra;
-import com.sun.corba.se.impl.interceptors.PINoOpHandlerImpl;
 import io.cucumber.java.it.Ma;
 import io.cucumber.java.tr.Ve;
 

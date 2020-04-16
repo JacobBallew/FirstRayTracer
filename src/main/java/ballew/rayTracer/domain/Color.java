@@ -9,6 +9,7 @@ public class Color extends Tuple {
         super(r, g, b, 0);
     }
 
+
     public static Color toColor(Tuple t) {
         return new Color(t.getX(), t.getY(), t.getZ());
     }

@@ -65,6 +65,18 @@ public class Canvas {
 
         // Right
         writePixel(yRow, xColRight, c);
+
+        // Left upper corner
+        writePixel(yRowTop, xColLeft, c);
+
+        // Right upper corner
+        writePixel(yRowTop, xColRight, c);
+
+        // Left bottom corner
+        writePixel(yRowBottom, xColLeft, c);
+
+        // Right bottom corner
+        writePixel(yRowBottom, xColRight, c);
     }
 
     public Color pixelAt(int row, int col) {
@@ -169,6 +181,15 @@ public class Canvas {
         return canvas.pixelAt(row, col);
     }
 
+    public int fromCartesian_X(double x) {
+        // See, https://stackoverflow.com/questions/14880601/translating-between-cartesian-and-screen-coordinates
+        return (int) x + xCol / 2;
+    }
+
+    public int fromCartesian_Y(double y) {
+        // See, https://stackoverflow.com/questions/14880601/translating-between-cartesian-and-screen-coordinates
+        return yRow / 2 - (int) y;
+    }
 
     public void print() {
         log("Canvas Print Out");
