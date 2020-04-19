@@ -12,52 +12,33 @@ public class DrawingAClock {
 
     public static void main(String[] args) {
 
-        // Path to save
+        // Path to save image
         String path = "C:\\Users\\jball\\Desktop\\test.ppm";
 
-        // Dimensions
+        // Dimensions of canvas
         int width = 400;
         int height = 400;
 
         // Create Canvas
         Canvas canvas = new Canvas(width, height);
 
-        // Point with Initial position. Origin
-        Point p = new Point(canvas.getXMid(), canvas.getYMid(), 0);
+        // Point with Initial position -> the origin
+        Point p = new Point(0, 0, 0);
 
+        //Write initial point
+        canvas.writePixelBold(canvas.fromCartesian_Y(p.getY()), canvas.fromCartesian_X(p.getX()), new Color(1, 1, 1));
 
-        //Write Pixel
-        System.out.println(p);
-        canvas.writePixelBold(
-                (height - (int) p.getY()),
-                (int) p.getX(),
-                new Color(0, 0, 1));
+        // Create a new point by translating from origin to hour 12
+        Matrix translation = Matrix.translation(0, 100, 0);
+        Point twelve = Point.toPoint(Matrix.multiplyByTuple(translation, p));
 
-        // Calculate positions
-
-        Matrix translation = Matrix.translation(0, 10, 0);
-
-        //Matrix finalTransform = Matrix.chainTransformations(Arrays.asList(rotation, translation));
-
-        Point p2 = Point.toPoint(Matrix.multiplyByTuple(translation, p));
-
-        //Write Pixel
-        System.out.println(p2);
-        canvas.writePixelBold(
-                (height - (int) p2.getY()),
-                (int) p2.getX(),
-                new Color(1, 0, 0));
-
-        Matrix rotation = Matrix.rotationZ(-1 * (Math.PI / 2)   );
-        Point p3 = Point.toPoint(Matrix.multiplyByTuple(rotation, p2));
-
-
-        System.out.println(p3);
-        canvas.writePixelBold(
-                (height - (int) p3.getY()),
-                (width + (int) p3.getX()),
-                new Color(1, 0, 0));
-
+        // Calculate each hour by rotating point 12 by half quarters
+        for(int i = 0; i < 12; i++){
+            //Matrix rotation = Matrix.rotationZ(((Math.PI / 6) * i));
+            Matrix rotation = Matrix.rotationZ_deg(30 * i);
+            Point hour = Point.toPoint(Matrix.multiplyByTuple(rotation, twelve));
+            canvas.writePixelBold(canvas.fromCartesian_Y(hour.getY()), canvas.fromCartesian_X(hour.getX()), new Color(0, 1, 0));
+        }
 
         // Save canvas
         CanvasPPM canvasPPM = new CanvasPPM(canvas);

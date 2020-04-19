@@ -370,7 +370,16 @@ public class Matrix {
         rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 1, 2);
         rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 2, 1);
         rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 2, 2);
-        //rotTrans.print();
+        return rotTrans;
+    }
+
+    public static Matrix rotationX_deg(double deg) {
+        Matrix rotTrans = createIdentityMatrix();
+        double radians = Math.toRadians(deg);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 1, 1);
+        rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 1, 2);
+        rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 2, 1);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 2, 2);
         return rotTrans;
     }
 
@@ -380,7 +389,16 @@ public class Matrix {
         rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 0, 2);
         rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 2, 0);
         rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 2, 2);
-        //rotTrans.print();
+        return rotTrans;
+    }
+
+    public static Matrix rotationY_deg(double deg) {
+        Matrix rotTrans = createIdentityMatrix();
+        double radians = Math.toRadians(deg);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 0, 0);
+        rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 0, 2);
+        rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 2, 0);
+        rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 2, 2);
         return rotTrans;
     }
 
@@ -390,7 +408,6 @@ public class Matrix {
         rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 0, 1);
         rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 1, 0);
         rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 1, 1);
-        //rotTrans.print();
         return rotTrans;
     }
 
@@ -401,7 +418,6 @@ public class Matrix {
         rotTrans.insertAt(LIBUltra.round4places(-Math.sin(radians)), 0, 1);
         rotTrans.insertAt(LIBUltra.round4places(Math.sin(radians)), 1, 0);
         rotTrans.insertAt(LIBUltra.round4places(Math.cos(radians)), 1, 1);
-        //rotTrans.print();
         return rotTrans;
     }
 
