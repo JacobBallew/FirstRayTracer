@@ -2,12 +2,7 @@ package ballew.testGround;
 
 import ballew.rayTracer.domain.Matrix;
 import ballew.rayTracer.domain.Point;
-import ballew.rayTracer.domain.Vector;
-import ballew.rayTracer.utils.LIBUltra;
-import io.cucumber.java.it.Ma;
-import io.cucumber.java.tr.Ve;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

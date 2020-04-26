@@ -3,7 +3,7 @@ package ballew.rayTracer.ppm;
 import ballew.rayTracer.canvas.Canvas;
 import ballew.rayTracer.domain.Color;
 import ballew.rayTracer.utils.LIBUltra;
-import io.cucumber.java.sl.In;
+
 
 import java.io.File;
 import java.io.FileWriter;
