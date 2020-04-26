@@ -42,7 +42,7 @@ public class Vector extends Tuple {
         return new Vector(x, y, z);
     }
 
-    public static double doProduct(Vector v1, Vector v2) {
+    public static double dotProduct(Vector v1, Vector v2) {
         return (v1.getX() * v2.getX()) + (v1.getY() * v2.getY()) + (v1.getZ() * v2.getZ() + (v1.getW() * v2.getW()));
     }
 

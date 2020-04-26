@@ -3,6 +3,7 @@ package ballew.rayTracer.utils;
 import ballew.rayTracer.domain.Color;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -61,4 +62,10 @@ public class LIBUltra {
 
     public static final int ONE_SECOND = 1000;
     public static final int HALF_SECOND = 500;
+
+    // Shape Types
+    public enum SHAPE_TYPES {
+        SPHERE,
+        TRIANGLE
+    }
 }

@@ -9,7 +9,7 @@ public class TupleTest {
 
     @Test
     public void isPoint() {
-        Tuple p = new Tuple(1,2,3,0);
+        Tuple p = new Tuple(1,2,3,1);
         Assert.assertEquals(true, p.isPoint());
     }
 

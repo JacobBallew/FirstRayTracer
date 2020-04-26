@@ -45,8 +45,8 @@ public class MatrixTest {
     @Test
     public void scaling_2() {
         Matrix trans = Matrix.scaling(2, 3, 4);
-        Vector p = new Vector(-4, 6, 8);
-        Assert.assertEquals(new Point(-8, 18, 32), Vector.toVector(Matrix.multiplyByTuple(trans, p)));
+        Vector v = new Vector(-4, 6, 8);
+        Assert.assertEquals(new Vector(-8, 18, 32), Vector.toVector(Matrix.multiplyByTuple(trans, v)));
     }
 
     @Test

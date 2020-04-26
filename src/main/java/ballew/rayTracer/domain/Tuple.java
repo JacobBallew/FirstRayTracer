@@ -60,13 +60,6 @@ public class Tuple {
         return new Tuple(a1.getX() - a2.getX(), a1.getY() - a2.getY(), a1.getZ() - a2.getZ(), w);
     }
 
-    public static Point toPoint(Tuple t) {
-        return new Point(t.getX(), t.getY(), t.getZ());
-    }
-
-    public static Vector toVector(Tuple t) {
-        return new Vector(t.getX(), t.getY(), t.getZ());
-    }
 
     public static Tuple negate(Tuple t) {
         return new Tuple(t.getX() * -1, t.getY() * -1, t.getZ() * -1, t.getW() * -1);
