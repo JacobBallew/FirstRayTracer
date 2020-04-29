@@ -70,4 +70,8 @@ public class Sphere implements Primitive{
         return shapeType;
     }
 
+    public int getID(){
+        return uniqueID;
+    }
+
 }

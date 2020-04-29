@@ -1,9 +1,9 @@
 package ballew.rayTracer.domain;
 
+import ballew.rayTracer.dataStructures.Intersect;
 import ballew.rayTracer.primatives.Sphere;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,8 +22,13 @@ public class Ray {
         return Point.toPoint(Tuple.add(origin, product));
     }
 
-    public List<Double> intersect(Sphere s) {
-        List intersections = new ArrayList();
+    /*
+    Returns a list of Intersect objects. This tells "time" or "t value" for each hit
+    TODO: Consider returning a "Intersections" object instead
+     */
+    public List<Intersect> intersect(Sphere s) {
+        List<Double> hits = new ArrayList();
+        List<Intersect> intersectList = new ArrayList<>();
 
         // Calculate discriminant to determine if a intersection occurs at all
         Vector sphereToRay = Vector.toVector(Tuple.subtract(origin, new Point(0, 0, 0)));
@@ -36,19 +41,23 @@ public class Ray {
 
         // If negative, then no intersection occurred -> return
         if (discrim < 0) {
-            Collections.sort(intersections);
-            return intersections;
+            return intersectList;
         } else {
 
             // Finally Calculate the intersections
             double t1 = (-b - Math.sqrt(discrim)) / (2 * a);
             double t2 = (-b + Math.sqrt(discrim)) / (2 * a);
 
-            // Return
-            intersections.add(t1);
-            intersections.add(t2);
-            Collections.sort(intersections);
-            return intersections;
+            hits.add(t1);
+            hits.add(t2);
+            Collections.sort(hits);
+
+            // Add 1st hit
+            intersectList.add(new Intersect(hits.get(0), s));
+            // Add 2nd hit
+            intersectList.add(new Intersect(hits.get(1), s));
+
+            return intersectList;
         }
     }
 
@@ -61,7 +70,7 @@ public class Ray {
         return r.position(time);
     }
 
-    public static List<Double> intersect(Ray r, Sphere s) {
+    public static List<Intersect> intersect(Sphere s, Ray r) {
         return r.intersect(s);
     }
 

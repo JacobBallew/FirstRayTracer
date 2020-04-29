@@ -1,4 +1,4 @@
-package ballew.rayTracer.chapters.dataStructures;
+package ballew.rayTracer.dataStructures;
 
 import ballew.rayTracer.primatives.Sphere;
 import ballew.rayTracer.utils.LIBUltra;

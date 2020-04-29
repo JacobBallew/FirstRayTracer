@@ -1,12 +1,13 @@
 package ballew.rayTracer.domain;
 
+import ballew.rayTracer.dataStructures.Intersect;
+import ballew.rayTracer.dataStructures.Intersections;
 import ballew.rayTracer.primatives.Sphere;
+import ballew.rayTracer.utils.LIBUltra;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class RayTest {
 
@@ -30,55 +31,17 @@ public class RayTest {
         Assert.assertEquals(new Point(4.5,3,4), ray.position(2.5));
     }
 
-    @Test
-    public void intersectTwoPoint_Sphere() {
-        Ray r = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
-        Sphere s = new Sphere();
 
-        List intersections = r.intersect(s);
-        Assert.assertEquals(4.0, intersections.get(0));
-        Assert.assertEquals(6.0, intersections.get(1));
-    }
 
     @Test
-    public void intersectTangent_Sphere() {
-        // Two intersections of same points
-        Ray r = new Ray(new Point(0, 1, -5), new Vector(0, 0, 1));
+    public void regressionTest(){
+        Ray r = new Ray(new Point(0,0,-5), new Vector(0,0,1));
         Sphere s = new Sphere();
 
-        List intersections = r.intersect(s);
-        Assert.assertEquals(intersections.get(1), intersections.get(0));
-        Assert.assertEquals(intersections.get(0), intersections.get(1));
-    }
+        Intersections xs = new Intersections(Ray.intersect(s,r));
 
-    @Test
-    public void noIntersect_Sphere() {
-        Ray r = new Ray(new Point(0, 2, -5), new Vector(0, 0, 1));
-        Sphere s = new Sphere();
-
-        List intersections = r.intersect(s);
-        Assert.assertTrue(intersections.size() == 0);
-    }
-
-    @Test
-    public void rayIsInside_Sphere() {
-        Ray r = new Ray(new Point(0, 0, 0), new Vector(0, 0, 1));
-        Sphere s = new Sphere();
-        List intersects = Ray.intersect(r, s);
-
-        Assert.assertTrue(intersects.size() == 2);
-        Assert.assertEquals(-1.0, intersects.get(0));
-        Assert.assertEquals(1.0, intersects.get(1));
-    }
-
-    @Test
-    public void sphereIsBehindRay_Sphere(){
-        Ray r = new Ray(new Point(0, 0, 5), new Vector(0, 0, 1));
-        Sphere s = new Sphere();
-        List intersects = Ray.intersect(r, s);
-
-        Assert.assertTrue(intersects.size() == 2);
-        Assert.assertEquals(-6.0, intersects.get(0));
-        Assert.assertEquals(-4.0, intersects.get(1));
+        Assert.assertEquals(2, xs.getCount());
+        Assert.assertEquals(LIBUltra.SHAPE_TYPES.SPHERE, xs.get(0).getShapeType());
+        Assert.assertEquals(LIBUltra.SHAPE_TYPES.SPHERE, xs.get(1).getShapeType());
     }
 }
