@@ -346,7 +346,7 @@ public class Matrix {
         return m2;
     }
     /*---------------------------------
-    Transformation (Motion) methods*/
+    Transformation (Motion/Movement) methods*/
 
     public static Matrix translation(double x, double y, double z) {
         Matrix res = Matrix.createIdentityMatrix();

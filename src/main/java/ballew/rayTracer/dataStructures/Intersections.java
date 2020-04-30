@@ -22,7 +22,7 @@ public class Intersections {
 
     public Intersections(Intersect... i) {
         intersectList = new ArrayList<>();
-        add(i);
+        this.add(i);
     }
 
     public List<Intersect> getIntersectList() {
@@ -40,9 +40,7 @@ public class Intersections {
     }
 
     public void add(List<Intersect> intersects) {
-        for (Intersect inter : intersects) {
-            intersectList.add(inter);
-        }
+        intersectList.forEach(this::add);
     }
 
     public int getCount() {

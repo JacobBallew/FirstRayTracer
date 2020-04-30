@@ -1,5 +1,6 @@
-package ballew.rayTracer.primatives;
+package ballew.rayTracer.primitive;
 
+import ballew.rayTracer.domain.Matrix;
 import ballew.rayTracer.domain.Point;
 import ballew.rayTracer.utils.LIBUltra;
 
@@ -11,6 +12,7 @@ public class Sphere implements Primitive{
     private double diameter;
     private Point position;
     private int uniqueID;
+    private Matrix transform;
     private LIBUltra.SHAPE_TYPES shapeType;
 
     public Sphere(double radius, Point position) {
@@ -19,16 +21,12 @@ public class Sphere implements Primitive{
         this.position = position;
         this.uniqueID = getUniqueID();
         this.shapeType = LIBUltra.SHAPE_TYPES.SPHERE;
+        this.transform = Matrix.createIdentityMatrix();
     }
 
-    public Sphere() {
-        this.radius = 1;
-        this.diameter = radius * 2;
-        this.position = new Point(0, 0, 0);
-        this.uniqueID = getUniqueID();
-        this.shapeType = LIBUltra.SHAPE_TYPES.SPHERE;
+    public Sphere(){
+         this(1, new Point(0,0,0));
     }
-
 
     private int getUniqueID() {
         int min = 1;
@@ -42,6 +40,14 @@ public class Sphere implements Primitive{
     }
 
     // Getters and Setters ===============================
+    public Matrix getTransform() {
+        return transform;
+    }
+
+    public void setTransform(Matrix transform) {
+        this.transform = transform;
+    }
+
     public double getRadius() {
         return radius;
     }
@@ -73,5 +79,7 @@ public class Sphere implements Primitive{
     public int getID(){
         return uniqueID;
     }
+
+
 
 }

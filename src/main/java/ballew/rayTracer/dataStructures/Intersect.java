@@ -1,6 +1,6 @@
 package ballew.rayTracer.dataStructures;
 
-import ballew.rayTracer.primatives.Primitive;
+import ballew.rayTracer.primitive.Primitive;
 import ballew.rayTracer.utils.LIBUltra;
 
 import java.util.Objects;

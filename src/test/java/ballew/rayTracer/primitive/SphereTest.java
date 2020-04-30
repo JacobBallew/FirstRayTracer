@@ -1,15 +1,13 @@
-package ballew.rayTracer.primatives;
+package ballew.rayTracer.primitive;
 
-import ballew.rayTracer.dataStructures.Intersect;
 import ballew.rayTracer.dataStructures.Intersections;
+import ballew.rayTracer.domain.Matrix;
 import ballew.rayTracer.domain.Point;
 import ballew.rayTracer.domain.Ray;
 import ballew.rayTracer.domain.Vector;
 import ballew.rayTracer.utils.LIBUltra;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.List;
 
 
 public class SphereTest {
@@ -84,6 +82,19 @@ public class SphereTest {
         Assert.assertTrue(intersects.getCount() == 2);
         Assert.assertEquals(-6.0, intersects.get(0).tValue(), LIBUltra.EQUALITY_EPSILON);
         Assert.assertEquals(-4.0, intersects.get(1).tValue(), LIBUltra.EQUALITY_EPSILON);
+    }
+
+    // Transformations
+    @Test
+    public void defaultTransformation(){
+        Sphere s = new Sphere();
+        Assert.assertEquals(Matrix.createIdentityMatrix(), s.getTransform());
+    }
+
+    @Test
+    public void changingSphereTransformation(){
+        Sphere s = new Sphere();
+
     }
 
 }

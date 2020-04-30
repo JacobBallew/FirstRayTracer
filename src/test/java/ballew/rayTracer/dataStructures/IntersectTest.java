@@ -1,6 +1,6 @@
 package ballew.rayTracer.dataStructures;
 
-import ballew.rayTracer.primatives.Sphere;
+import ballew.rayTracer.primitive.Sphere;
 import ballew.rayTracer.utils.LIBUltra;
 import org.junit.Assert;
 import org.junit.Test;

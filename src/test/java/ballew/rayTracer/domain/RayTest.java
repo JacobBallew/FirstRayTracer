@@ -1,13 +1,10 @@
 package ballew.rayTracer.domain;
 
-import ballew.rayTracer.dataStructures.Intersect;
 import ballew.rayTracer.dataStructures.Intersections;
-import ballew.rayTracer.primatives.Sphere;
+import ballew.rayTracer.primitive.Sphere;
 import ballew.rayTracer.utils.LIBUltra;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.List;
 
 public class RayTest {
 
@@ -31,8 +28,6 @@ public class RayTest {
         Assert.assertEquals(new Point(4.5,3,4), ray.position(2.5));
     }
 
-
-
     @Test
     public void regressionTest(){
         Ray r = new Ray(new Point(0,0,-5), new Vector(0,0,1));
@@ -44,4 +39,29 @@ public class RayTest {
         Assert.assertEquals(LIBUltra.SHAPE_TYPES.SPHERE, xs.get(0).getShapeType());
         Assert.assertEquals(LIBUltra.SHAPE_TYPES.SPHERE, xs.get(1).getShapeType());
     }
+
+    // Transforming (moving) Rays
+
+    @Test
+    public void translateRay(){
+        Ray r1 = new Ray(new Point(1,2,3), new Vector(0,1,0));
+        Matrix transformation = Matrix.translation(3,4,5);
+
+        Ray r2 = r1.transform(transformation);
+
+        Assert.assertEquals(new Point(4,6,8), r2.getOrigin());
+        Assert.assertEquals(new Vector(0,1,0), r2.getDirection());
+    }
+
+    @Test
+    public void scalingARay(){
+        Ray r1 = new Ray(new Point(1,2,3), new Vector(0,1,0));
+        Matrix transformation = Matrix.scaling(2,3,4);
+
+        Ray r2 = Ray.transform(r1, transformation);
+
+        Assert.assertEquals(new Point(2,6,12), r2.getOrigin());
+        Assert.assertEquals(new Vector(0,3,0), r2.getDirection());
+    }
+
 }

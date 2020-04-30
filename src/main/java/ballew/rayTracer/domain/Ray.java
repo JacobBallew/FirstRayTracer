@@ -1,7 +1,7 @@
 package ballew.rayTracer.domain;
 
 import ballew.rayTracer.dataStructures.Intersect;
-import ballew.rayTracer.primatives.Sphere;
+import ballew.rayTracer.primitive.Sphere;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,11 +61,18 @@ public class Ray {
         }
     }
 
-
+    public Ray transform(Matrix transformation){
+        Point newOrigin = Point.toPoint(Matrix.multiplyByTuple(transformation, origin));
+        Vector newDirection = Vector.toVector(Matrix.multiplyByTuple(transformation, direction));
+        return new Ray(newOrigin, newDirection);
+    }
     /*-----------------
     Static methods
      */
 
+    public static Ray transform(Ray ray, Matrix transformation){
+        return ray.transform(transformation);
+    }
     public static Point position(Ray r, double time) {
         return r.position(time);
     }
