@@ -56,6 +56,13 @@ public class LIBUltra {
         return ThreadLocalRandom.current().nextDouble(lower, upper + 1);
     }
 
+    public static double randomInt(int lower, int upper) {
+        return ThreadLocalRandom.current().nextInt(lower, upper + 1);
+    }
+
+
+
+
     // Colors
     public static final Color RED = new Color(1, 0, 0);
     public static final Color BLUE = new Color(0, 0, 1);
@@ -63,6 +70,9 @@ public class LIBUltra {
     public static final int ONE_SECOND = 1000;
     public static final int HALF_SECOND = 500;
 
+    public static Color randomColor(){
+        return new Color(randomInt(0,1),randomInt(0,1),randomInt(0,1));
+    }
     // Shape Types
     public enum SHAPE_TYPES {
         SPHERE,

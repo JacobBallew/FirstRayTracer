@@ -74,7 +74,7 @@ public class SphereTest {
     }
 
     @Test
-    public void sphereIsBehindRay_Sphere(){
+    public void sphereIsBehindRay_Sphere() {
         Ray r = new Ray(new Point(0, 0, 5), new Vector(0, 0, 1));
         Sphere s = new Sphere();
         Intersections intersects = new Intersections(r.intersect(s));
@@ -86,15 +86,40 @@ public class SphereTest {
 
     // Transformations
     @Test
-    public void defaultTransformation(){
+    public void defaultTransformation() {
         Sphere s = new Sphere();
         Assert.assertEquals(Matrix.createIdentityMatrix(), s.getTransform());
     }
 
     @Test
-    public void changingSphereTransformation(){
+    public void changingSphereTransformation() {
         Sphere s = new Sphere();
+        Matrix translation = Matrix.translation(2, 3, 4);
+        //s.setTransform(translation);
+        Sphere.setTransform(s, translation);
+        Assert.assertEquals(translation, s.getTransform());
+    }
 
+    @Test
+    public void intersectingAScaledSphereWithRay() {
+        Ray r = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
+        Sphere s = new Sphere();
+        s.setTransform(Matrix.scaling(2, 2, 2));
+        Intersections intersections = new Intersections(r.intersect(s));
+
+        Assert.assertEquals(2, intersections.getCount());
+        Assert.assertEquals(3, intersections.get(0).tValue(), LIBUltra.EQUALITY_EPSILON);
+        Assert.assertEquals(7, intersections.get(1).tValue(), LIBUltra.EQUALITY_EPSILON);
+    }
+
+    @Test
+    public void intersectATranslatedSphereWithARay(){
+        Ray r = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
+        Sphere s = new Sphere();
+        s.setTransform(Matrix.translation(5,0,0));
+        Intersections intersections = new Intersections(r.intersect(s));
+
+        Assert.assertEquals(0,intersections.getCount());
     }
 
 }

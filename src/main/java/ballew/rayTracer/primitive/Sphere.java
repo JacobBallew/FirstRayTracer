@@ -39,6 +39,11 @@ public class Sphere implements Primitive{
         return shapeType + " ( Radius: [" + radius + "]  Position: [" + position + "]  ID: [" + uniqueID + "] )";
     }
 
+    // Static Methods
+    public static void setTransform(Sphere s, Matrix transform){
+        s.setTransform(transform);
+    }
+
     // Getters and Setters ===============================
     public Matrix getTransform() {
         return transform;

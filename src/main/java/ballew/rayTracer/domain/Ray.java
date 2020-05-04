@@ -27,14 +27,17 @@ public class Ray {
     TODO: Consider returning a "Intersections" object instead
      */
     public List<Intersect> intersect(Sphere s) {
+        // This is too handle the ability to transform, scale, translate an object. We transform the Ray to acheive the same result. See page 70
+        Ray transformedRay = Ray.transform(this, Matrix.inverse(s.getTransform()));
+
         List<Double> hits = new ArrayList();
         List<Intersect> intersectList = new ArrayList<>();
 
         // Calculate discriminant to determine if a intersection occurs at all
-        Vector sphereToRay = Vector.toVector(Tuple.subtract(origin, new Point(0, 0, 0)));
+        Vector sphereToRay = Vector.toVector(Tuple.subtract(transformedRay.origin, new Point(0, 0, 0)));
 
-        double a = Vector.dotProduct(direction, direction);
-        double b = 2 * Vector.dotProduct(direction, sphereToRay);
+        double a = Vector.dotProduct(transformedRay.direction, transformedRay.direction);
+        double b = 2 * Vector.dotProduct(transformedRay.direction, sphereToRay);
         double c = Vector.dotProduct(sphereToRay, sphereToRay) - 1;
 
         double discrim = Math.pow(b, 2) - (4 * a * c);
